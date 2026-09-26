@@ -53,6 +53,23 @@ const GUNS = [
     description:
       'The other pump gun. Twin action bars, a simple safety on the tang, and a price that leaves money for ammunition.',
   },
+  // --- 2 Senjata Baru dari Internet ---
+  {
+    name: 'M1911',
+    type: 'Pistol',
+    caliber: '.45 ACP',
+    price: 850,
+    image: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/COLT_M1911A1_fieldstrip_noBG_2.jpg/500px-COLT_M1911A1_fieldstrip_noBG_2.jpg?utm_source=id.wikipedia.org&utm_campaign=parser&utm_content=thumbnail',
+    description: 'A classic single-action, semi-automatic, magazine-fed, recoil-operated pistol. Proven reliability for over a century.',
+  },
+  {
+    name: 'FN SCAR',
+    type: 'Rifle',
+    caliber: '5.56mm',
+    price: 2999,
+    image: 'https://upload.wikimedia.org/wikipedia/commons/2/29/ScarSandiaPix.JPG?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled',
+    description: 'A gas-operated short-stroke gas piston automated rifle. Built for modularity and high performance in all conditions.',
+  }
 ]
 
 export default GUNS

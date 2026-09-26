@@ -86,6 +86,36 @@
   margin: 0;
 }
 
+/* Challenge: Style controls search & filter */
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.controls input,
+.controls select {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font: inherit;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.controls input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.no-match {
+  text-align: center;
+  padding: 40px 0;
+  color: var(--steel);
+  font-size: 1.1rem;
+}
+
 .list-head {
   display: flex;
   align-items: baseline;
@@ -134,9 +164,12 @@
   border-color: var(--brass);
 }
 
+/* Challenge: Fix image size for internet sources */
 .card-img {
   width: 100%;
-  height: auto;
+  height: 120px;
+  object-fit: contain;
+  background-color: white;
   margin-bottom: 10px;
   border-bottom: 1px solid var(--line);
 }
@@ -175,9 +208,12 @@
   background: rgb(24 34 44 / 0.55);
 }
 
+/* Challenge: Fix popup image size too */
 .popup-img {
   width: 100%;
-  height: auto;
+  height: 240px;
+  object-fit: contain;
+  background-color: white;
   margin-bottom: 16px;
   border-bottom: 1px solid var(--line);
 }

@@ -1,28 +1,85 @@
+import { useState } from 'react'
 import GUNS from '../data/guns.js'
 import GunCard from '../components/GunCard.jsx'
 
 function Catalog() {
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedType, setSelectedType] = useState('All')
+  const [sortOption, setSortOption] = useState('name-asc')
+
+  // Logika Filter (Search & Type)
+  let filteredGuns = GUNS.filter((gun) => {
+    const matchesSearch = gun.name.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesType = selectedType === 'All' || gun.type === selectedType
+    return matchesSearch && matchesType
+  })
+
+  // Logika Sorting (Alphabet & Harga)
+  filteredGuns.sort((a, b) => {
+    if (sortOption === 'name-asc') return a.name.localeCompare(b.name)
+    if (sortOption === 'name-desc') return b.name.localeCompare(a.name)
+    if (sortOption === 'price-asc') return a.price - b.price
+    if (sortOption === 'price-desc') return b.price - a.price
+    return 0
+  })
+
   return (
     <>
       <section className="masthead">
         <h1 className="display">Hardware, by the spec sheet.</h1>
         <p className="lede">
           A small armory of pistols, rifles, and shotguns. Every piece listed with its
-          type, caliber, and price — nothing else.
+          type, caliber, and price &mdash; nothing else.
         </p>
       </section>
 
       <section>
+        {/* Challenge: Filter & Sort Controls */}
+        <div className="controls">
+          <input
+            type="text"
+            placeholder="Search guns..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <select
+            value={selectedType}
+            onChange={(e) => setSelectedType(e.target.value)}
+          >
+            <option value="All">All Types</option>
+            <option value="Pistol">Pistol</option>
+            <option value="Rifle">Rifle</option>
+            <option value="Shotgun">Shotgun</option>
+          </select>
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value="name-asc">Name (A-Z)</option>
+            <option value="name-desc">Name (Z-A)</option>
+            <option value="price-asc">Price (Lowest)</option>
+            <option value="price-desc">Price (Highest)</option>
+          </select>
+        </div>
+
         <div className="list-head">
           <h2>Current stock</h2>
-          <span className="count">{GUNS.length} pieces</span>
+          <span className="count">{filteredGuns.length} pieces</span>
         </div>
-        <ul className="stock">
-          {GUNS.map((gun) => <GunCard key={gun.name} gun={gun} />)}
-        </ul>
+
+        {/* Challenge: No guns match */}
+        {filteredGuns.length === 0 ? (
+          <p className="no-match">No guns match your search.</p>
+        ) : (
+          <ul className="stock">
+            {filteredGuns.map((gun) => (
+              <GunCard key={gun.name} gun={gun} />
+            ))}
+          </ul>
+        )}
       </section>
     </>
   )
 }
 
-export default Catalog
+export default Catalog  
