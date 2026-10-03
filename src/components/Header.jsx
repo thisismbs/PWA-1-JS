@@ -1,9 +1,9 @@
-const NAV = ['Catalog', 'About', 'Contact']
+const NAV = ['Catalog', 'Cart', 'About', 'Contact']
 
-function Header({ tab, onTab }) {
+function Header({ tab, onTab, cartCount }) {
   return (
     <header className="header">
-      <span className="brand display">Kelompok 14 Hebat</span>
+      <span className="brand display"> Kelompok 14 Hebat</span>
       <nav className="nav">
         {NAV.map((item) => (
           <button
@@ -12,7 +12,10 @@ function Header({ tab, onTab }) {
             className={tab === item ? 'nav-link active' : 'nav-link'}
             onClick={() => onTab(item)}
           >
-            {item}
+            {item} 
+            {item === 'Cart' && cartCount > 0 && (
+              <span className="badge">{cartCount}</span>
+            )}
           </button>
         ))}
       </nav>
